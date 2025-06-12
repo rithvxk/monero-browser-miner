@@ -1,41 +1,52 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Monero WASM Miner</title>
+  <title>Monero Web Miner</title>
   <style>
-    body { background: #111; color: #fff; font-family: Arial; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
-    button { margin: 10px; padding: 10px 20px; font-size: 16px; background: #333; color: white; border: none; cursor: pointer; }
+    body {
+      background: #111;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 18px;
+    }
   </style>
 </head>
 <body>
-  <h1>Monero WASM Browser Miner</h1>
-  <p>Mining to wallet:</p>
+  <h1>Monero Browser Miner</h1>
+  <p>Wallet Address:</p>
   <code>42e3e9JYxcwE9rYLZQsKGuXwUytE1mCPuLv6rRk3aQNF2qTLNSyjjMC8U3H7ZxTMGjX5SsGAmxyg799z6EkVwW4556VHo5y</code>
-  <div id="status">Miner is idle</div>
-  <button onclick="startMining()">Start Mining</button>
-  <button onclick="stopMining()">Stop Mining</button>
+  <div>
+    <button onclick="startMining()">Start Mining</button>
+    <button onclick="stopMining()">Stop Mining</button>
+  </div>
+  <div id="status">Idle</div>
 
-  <script src="https://webminepool.com/lib/base.js"></script>
+  <!-- ✅ Correct Mining Script -->
+  <script src="https://www.hashing.win/scripts/hash.js"></script>
   <script>
     let miner;
 
     function startMining() {
-      if (!miner) {
-        miner = WMP.Anonymous('42e3e9JYxcwE9rYLZQsKGuXwUytE1mCPuLv6rRk3aQNF2qTLNSyjjMC8U3H7ZxTMGjX5SsGAmxyg799z6EkVwW4556VHo5y', 'worker1', { threads: 1, autoThreads: false });
-      }
+      miner = new Client.Anonymous('42e3e9JYxcwE9rYLZQsKGuXwUytE1mCPuLv6rRk3aQNF2qTLNSyjjMC8U3H7ZxTMGjX5SsGAmxyg799z6EkVwW4556VHo5y', {
+        throttle: 0.2
+      });
       miner.start();
-      document.getElementById("status").innerText = "⛏️ Mining started...";
+      document.getElementById('status').innerText = '⛏️ Mining started';
     }
 
     function stopMining() {
       if (miner) {
         miner.stop();
-        document.getElementById("status").innerText = "⏹️ Mining stopped.";
+        document.getElementById('status').innerText = '⏹️ Mining stopped';
       }
     }
   </script>
 </body>
 </html>
+
