@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monero Browser Miner</title>
+  <style>
+    body {
+      background: #0f0f0f;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin-top: 20px;
+      background: #1f1f1f;
+      color: white;
+      border: 1px solid #333;
+      cursor: pointer;
+    }
+    #status {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Monero Browser Miner</h1>
+  <p>This browser will mine Monero for wallet:</p>
+  <code>42e3e9JYxcwE9rYLZQsKGuXwUytE1mCPuLv6rRk3aQNF2qTLNSyjjMC8U3H7ZxTMGjX5SsGAmxyg799z6EkVwW4556VHo5y</code>
+
+  <button id="startBtn">Start Mining</button>
+  <button id="stopBtn" disabled>Stop Mining</button>
+
+  <div id="status">Miner is idle</div>
+
+  <script>
+    let mining = false;
+    let interval;
+
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const status = document.getElementById('status');
+
+    startBtn.onclick = () => {
+      mining = true;
+      status.textContent = "⛏️ Mining started... (simulated)";
+      startBtn.disabled = true;
+      stopBtn.disabled = false;
+      interval = setInterval(() => {
+        console.log("Mining hash...");
+      }, 1000);
+    };
+
+    stopBtn.onclick = () => {
+      mining = false;
+      clearInterval(interval);
+      status.textContent = "⏹️ Mining stopped.";
+      startBtn.disabled = false;
+      stopBtn.disabled = true;
+    };
+  </script>
+</body>
+</html>
