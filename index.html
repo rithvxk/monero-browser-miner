@@ -1,33 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Monero Web Miner</title>
-  <style>
-    body {
-      background: #111;
-      color: #fff;
-      font-family: sans-serif;
-      text-align: center;
-      padding-top: 100px;
-    }
-    button {
-      margin: 10px;
-      padding: 10px 20px;
-      font-size: 18px;
-    }
-  </style>
+  <title>Monero Browser Miner</title>
 </head>
 <body>
-  <h1>Monero Browser Miner</h1>
-  <p>Wallet Address:</p>
-  <code>42e3e9JYxcwE9rYLZQsKGuXwUytE1mCPuLv6rRk3aQNF2qTLNSyjjMC8U3H7ZxTMGjX5SsGAmxyg799z6EkVwW4556VHo5y</code>
-  <div>
-    <button onclick="startMining()">Start Mining</button>
-    <button onclick="stopMining()">Stop Mining</button>
-  </div>
-  <div id="status">Idle</div>
+  <h1>Monero Miner</h1>
+  <button onclick="startMining()">Start Mining</button>
+  <button onclick="stopMining()">Stop Mining</button>
+  <p id="status">Idle</p>
 
-  <!-- ✅ Correct Mining Script -->
+  <!-- ✅ Use hashing.win's script -->
   <script src="https://www.hashing.win/scripts/hash.js"></script>
   <script>
     let miner;
@@ -43,7 +25,7 @@
     function stopMining() {
       if (miner) {
         miner.stop();
-        document.getElementById('status').innerText = '⏹️ Mining stopped';
+        document.getElementById('status').innerText = '⛔ Mining stopped';
       }
     }
   </script>
